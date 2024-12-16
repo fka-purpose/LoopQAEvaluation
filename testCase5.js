@@ -2,12 +2,10 @@ const { test, expect } = require('@playwright/test');
 
 test('test', async ({ page }) => {
   await page.goto('https://animated-gingersnap-8cf7f2.netlify.app/');
-  await page.getByLabel('Username').click();
-  await page.getByLabel('Username').fill('admin');
-  await page.getByLabel('Password').click();
-  await page.getByLabel('Password').fill('password123');
-  await page.getByRole('button', { name: 'Sign in' }).click();
+  
   await page.getByRole('button', { name: 'Mobile Application Native' }).click();
+  const header = await page.locator('header');
+  await expect(header).toContainText('Mobile Application');
 
   // Locate the "In Progress" column
   const inProgressColumn = page.locator('xpath=//*[@id="root"]/div/div[2]/main/div/div/div[2]'); // Adjust XPath if necessary
@@ -27,3 +25,5 @@ test('test', async ({ page }) => {
   await expect(class2).toHaveText('High Priority');
   console.log('Pass: Tag "High Priority" found in the "In Progress" column.');
 });
+
+
