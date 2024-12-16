@@ -3,11 +3,7 @@ const { test, expect } = require('@playwright/test');
 
 test('test', async ({ page }) => {
   await page.goto('https://animated-gingersnap-8cf7f2.netlify.app/');
-  await page.getByLabel('Username').click();
-  await page.getByLabel('Username').fill('admin');
-  await page.getByLabel('Password').click();
-  await page.getByLabel('Password').fill('password123');
-  await page.getByRole('button', { name: 'Sign in' }).click();
+  
   const header = await page.locator('header');
   await expect(header).toContainText('Web Application');
  // Locate the "To Do" column
